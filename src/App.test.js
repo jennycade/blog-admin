@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import { act } from 'react-dom/test-utils';
 import userEvent from '@testing-library/user-event';
 import App from './App';
 
@@ -22,7 +23,9 @@ describe('App component', () => {
   // });
 
   it('shows sign in form on load', () => {
-    render(<App />);
-    expect(screen.getByRole('form')).toBeInTheDocument();
+    act(() => {
+      render(<App />);
+    });
+    expect(screen.getByRole('textbox')).toBeInTheDocument();
   });
 });

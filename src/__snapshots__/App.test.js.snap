@@ -4,6 +4,48 @@ exports[`App component matches previous snapshot 1`] = `
 <div>
   <div
     class="app"
-  />
+  >
+    <form>
+      <div
+        class="mb-3"
+      >
+        <label
+          class="form-label"
+          for="usernameInput"
+        >
+          Username
+        </label>
+        <input
+          class="form-control"
+          id="usernameInput"
+          type="text"
+        />
+      </div>
+      <div
+        class="mb-3"
+      >
+        <label
+          class="form-label"
+          for="passwordInput"
+        >
+          Password
+        </label>
+        <input
+          class="form-control"
+          id="passwordInput"
+          type="password"
+        />
+      </div>
+      <div
+        class="mb-3"
+      >
+        <button
+          class="btn btn-primary"
+        >
+          Sign in
+        </button>
+      </div>
+    </form>
+  </div>
 </div>
 `;
