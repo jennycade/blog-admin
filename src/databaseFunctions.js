@@ -25,11 +25,11 @@ export const getAPIHeaders = (token = '') => {
   return result;
 }
 
-export const signIn = async (username, password) => {
+export const signInUser = async (username, password) => {
   // success: return {token, user}
   // fail: return {errorMessage}
   const response = await fetch(
-    `${process.env.BACKEND_URI}/login`,
+    `${process.env.REACT_APP_BACKEND_URI}/login`,
     {
       method: 'POST',
       headers: getAPIHeaders(),
@@ -42,6 +42,26 @@ export const signIn = async (username, password) => {
   if (!response.ok) {
     return({errorMessage: json.error});
   } else {
+    // save to localStorage
+    setLocalStorageTokenAndUser(json.token, json.user);
     return {token: json.token, user: json.user};
   }
 }
+
+export const registerUser = async (username, password, displayName) => {
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND_URI}/users`,
+    {
+      method: 'POST',
+      headers: getAPIHeaders(),
+      body: JSON.stringify({ username, password, displayname: displayName, iscommenter: 'true' })
+    }
+  );
+  const json = await response.json();
+  
+  if (!response.ok) {
+    return {errorMessage: json.error};
+  } else {
+    return true;
+  }
+};
