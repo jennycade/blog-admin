@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 import React from 'react';
 import { useState } from 'react';
+import SignInForm from './SignInForm';
 
 const App = () => {
   // props
@@ -11,31 +12,9 @@ const App = () => {
   const [currentUser, setCurrentUser] = useState({});
 
   return (
-    <div className='app'>
+    <div className='app col-lg-8 mx-auto p-3 py-md-5'>
       { (Object.keys(currentUser).length === 0) && (
-        <form>
-          <div className='mb-3'>
-            <label
-              htmlFor="usernameInput"
-              className='form-label'
-            >Username</label>
-            <input type='text' className='form-control' id='usernameInput' />
-          </div>
-          <div className='mb-3'>
-            <label
-              htmlFor="passwordInput"
-              className='form-label'
-            >Password</label>
-            <input
-              type='password'
-              className='form-control'
-              id='passwordInput'
-            />
-          </div>
-          <div className='mb-3'>
-            <button className='btn btn-primary'>Sign in</button>
-          </div>
-        </form>
+        <SignInForm />
       )}
     </div>
   );
