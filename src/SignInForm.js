@@ -27,6 +27,7 @@ function SignInForm(props) {
     } else if (password === '') {
       setError('Password required');
     } else {
+      setError('');
       await handleSignInSubmit(username, password);
     }
   }

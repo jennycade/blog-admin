@@ -145,5 +145,52 @@ describe('SignInForm component', () => {
     expect(alert).toBeInTheDocument();
     expect(alert.textContent).toMatch(/username/i);
   });
+  it('does not show an error message when form is filled out', async () => {
+    const user = userEvent.setup();
+    // mock submit
+    const handleSignInSubmit = jest.fn();
+    render(<SignInForm handleSignInSubmit={handleSignInSubmit} />);
+
+    // UI
+    const usernameField = screen.getByLabelText('Username');
+    const passwordField = screen.getByLabelText('Password');
+
+    // fill out form
+    await user.type(usernameField, 'testuser');
+    await user.type(passwordField, 'abc123');
+
+    // submit (enter)
+    await user.keyboard('{Enter}');
+
+    // assertions
+    const alert = screen.queryByRole('alert');
+    expect(alert).not.toBeInTheDocument();
+  });
+
+  it('hides existing error message after successful submission', async () => {
+    const user = userEvent.setup();
+    // mock submit
+    const handleSignInSubmit = jest.fn();
+    render(<SignInForm handleSignInSubmit={handleSignInSubmit} />);
+
+    // UI
+    const usernameField = screen.getByLabelText('Username');
+    const passwordField = screen.getByLabelText('Password');
+
+    // fill out form
+    // await user.type(usernameField, 'testuser');
+    await user.type(passwordField, 'abc123');
+
+    // submit (enter)
+    await user.keyboard('{Enter}');
+
+    // correct the form
+    await user.type(usernameField, 'testuser');
+    await user.keyboard('{Enter}');
+
+    // assertions
+    const alert = screen.queryByRole('alert');
+    expect(alert).not.toBeInTheDocument();
+  });
 
 });
