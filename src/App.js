@@ -2,11 +2,16 @@
 import 'bootstrap/dist/css/bootstrap.css';
 
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+// components
 import SignInForm from './SignInForm';
+import NavBarExample from './examples/navbarExample';
 
 // API stuff
 import {
+  shouldUseLocalStorageTokenAndUser,
+  getLocalStorageTokenAndUser,
   signInUser
 } from './databaseFunctions';
 
@@ -14,6 +19,18 @@ const App = () => {
   // state
   const [token, setToken] = useState('');
   const [currentUser, setCurrentUser] = useState({});
+
+  // effects
+  // check for localStorage token
+  useEffect(() => {
+    if (!token) {
+      if (shouldUseLocalStorageTokenAndUser()) {
+        const results = getLocalStorageTokenAndUser();
+        setToken(results.token);
+        setCurrentUser(results.user);
+      }
+    }
+  }, [token]);
 
   // functions
   const handleSignInSubmit = async (username, password) => {
@@ -29,8 +46,21 @@ const App = () => {
 
   return (
     <div className='app col-lg-8 mx-auto p-3 py-md-5'>
-      { (Object.keys(currentUser).length === 0) && (
+      {/* SIGN IN FORM */}
+      { token === '' && (
         <SignInForm handleSignInSubmit={handleSignInSubmit} />
+      )}
+
+      {/* WELCOME */}
+      { token !== '' && (
+        <>
+          <NavBarExample />
+
+          <main>
+            <h1>Blog admin</h1>
+
+          </main>
+        </>
       )}
     </div>
   );

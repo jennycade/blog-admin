@@ -1,3 +1,11 @@
+import React from "react";
+
+export const shouldUseLocalStorageTokenAndUser = () => {
+  const token = localStorage.getItem('token');
+  const user = JSON.parse(localStorage.getItem('user'));
+  return (token && user);
+}
+
 export const getLocalStorageTokenAndUser = () => {
   const token = localStorage.getItem('token');
   const user = JSON.parse(localStorage.getItem('user'));
