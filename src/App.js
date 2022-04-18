@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 
 // components
 import SignInForm from './SignInForm';
+import NavBar from './NavBar';
 import NavBarExample from './examples/navbarExample';
 
 // API stuff
@@ -54,7 +55,7 @@ const App = () => {
       {/* WELCOME */}
       { token !== '' && (
         <>
-          <NavBarExample />
+          <NavBar />
 
           <main>
             <h1>Blog admin</h1>
