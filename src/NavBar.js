@@ -1,4 +1,7 @@
 // import 'bootstrap/dist/js';
+import {
+  NavLink
+} from 'react-router-dom';
 
 const NavBar = (props) => {
   // props
@@ -25,51 +28,47 @@ const NavBar = (props) => {
         >
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a
+              <NavLink
                 className={
                   `nav-link${activeSection === 'home' ? ' active' : ''}`
                 }
-                aria-current={activeSection === 'home' ? 'page' : 'false'}
-                href="/"
+                to="/"
               >
                 Home
-              </a>
+              </NavLink>
             </li>
 
             <li className="nav-item">
-              <a
+              <NavLink
                 className={
                   `nav-link${activeSection === 'posts' ? ' active' : ''}`
                 }
-                aria-current={activeSection === 'posts' ? 'page' : 'false'}
-                href="/posts"
+                to="/posts"
               >
                 Posts
-              </a>
+              </NavLink>
             </li>
 
             <li className="nav-item">
-              <a
+              <NavLink
                 className={
                   `nav-link${activeSection === 'users' ? ' active' : ''}`
                 }
-                aria-current={activeSection === 'users' ? 'page' : 'false'}
-                href="/users"
+                to="/users"
               >
                 Users
-              </a>
+              </NavLink>
             </li>
 
             <li className="nav-item">
-              <a
+              <NavLink
                 className={
                   `nav-link${activeSection === 'comments' ? ' active' : ''}`
                 }
-                aria-current={activeSection === 'comments' ? 'page' : 'false'}
-                href="/comments"
+                to="/comments"
               >
                 Comments
-              </a>
+              </NavLink>
             </li>
 
           </ul>
