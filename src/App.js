@@ -4,6 +4,16 @@ import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
 import { useState, useEffect } from 'react';
 
+import {
+  Routes, Route, 
+} from 'react-router-dom';
+
+// routes
+import Home from './routes/Home';
+import Posts from './routes/Posts';
+import Users from './routes/Users';
+import Comments from './routes/Comments';
+
 // components
 import SignInForm from './SignInForm';
 import NavBar from './NavBar';
@@ -58,7 +68,20 @@ const App = () => {
           <NavBar />
 
           <main>
-            <h1>Blog admin</h1>
+            <Routes>
+              <Route path='/' element={
+                <Home />
+              } />
+              <Route path='posts' element={
+                <Posts />
+              } />
+              <Route path='users' element={
+                <Users />
+              } />
+              <Route path='comments' element={
+                <Comments />
+              } />
+            </Routes>
 
           </main>
         </>

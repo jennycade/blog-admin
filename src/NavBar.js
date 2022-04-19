@@ -1,4 +1,4 @@
-import 'bootstrap/dist/js/bootstrap';
+// import 'bootstrap/dist/js';
 
 const NavBar = (props) => {
   // props
