@@ -13,6 +13,7 @@ import Home from './routes/Home';
 import Posts from './routes/Posts';
 import Users from './routes/Users';
 import Comments from './routes/Comments';
+import Post from './routes/Post';
 
 // components
 import SignInForm from './SignInForm';
@@ -69,12 +70,20 @@ const App = () => {
 
           <main>
             <Routes>
+
               <Route path='/' element={
                 <Home />
               } />
-              <Route path='posts' element={
-                <Posts token={token} />
-              } />
+
+              <Route path='posts'>
+                <Route index element={
+                  <Posts token={token} />
+                } />
+                <Route path=':postId' element={
+                  <Post token={token} />
+                } />
+              </Route>
+              
               <Route path='users' element={
                 <Users />
               } />
