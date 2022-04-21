@@ -73,7 +73,7 @@ const App = () => {
                 <Home />
               } />
               <Route path='posts' element={
-                <Posts />
+                <Posts token={token} />
               } />
               <Route path='users' element={
                 <Users />
