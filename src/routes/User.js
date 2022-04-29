@@ -29,38 +29,67 @@ function User(props) {
     }
   }, [token, userId]);
 
+  // functions
+  const toggleView = () => {
+    if (display === 'view') {
+      setDisplay('edit');
+    } else {
+      setDisplay('view');
+    }
+  }
+
   return (
     <>
       { Object.keys(user).length === 0 && 
         <Loading />
       }
 
-      { Object.keys(user).length > 0 && display === 'view' && (
+      { Object.keys(user).length > 0 && (
         <>
-          <h1>{user.username}</h1>
+          <button
+            className='btn btn-primary'
+            onClick={toggleView}
+          >
+            { display === 'view' ? 'Edit' : 'Cancel'}
+          </button>
 
-          <dl>
-            <dt>Display name</dt>
-            <dd>{user.displayName}</dd>
+          { display === 'view' && (
+            <>
+              <h1>{user.username}</h1>
 
-            <dt>Roles</dt>
-            { 
-              user.roles.map((role) => (
-                <dd key={role}>
-                  {role}
-                </dd>
-              ))
-            }
-            
-            <dt>User created</dt>
-            <dd><time>{user.createdAt}</time></dd>
+              <dl>
+                <dt>Display name</dt>
+                <dd>{user.displayName}</dd>
 
-            <dt>Last updated</dt>
-            <dd><time>{user.updatedAt}</time></dd>
+                <dt>Roles</dt>
+                { 
+                  user.roles.map((role) => (
+                    <dd key={role}>
+                      {role}
+                    </dd>
+                  ))
+                }
+                
+                <dt>User created</dt>
+                <dd><time>{user.createdAt}</time></dd>
 
-            {/* TODO: add posts */}
+                <dt>Last updated</dt>
+                <dd><time>{user.updatedAt}</time></dd>
 
-          </dl>
+                {/* TODO: add posts */}
+
+              </dl>
+            </>
+          )}
+
+          { display === 'edit' && (
+            <form>
+              <label>Display name</label>
+              <input type="text"/>
+            </form>
+          )}
+
+          
         </>
       )}
     </>
