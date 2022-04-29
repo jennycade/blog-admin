@@ -14,6 +14,7 @@ import Posts from './routes/Posts';
 import Users from './routes/Users';
 import Comments from './routes/Comments';
 import Post from './routes/Post';
+import User from './routes/User';
 
 // components
 import SignInForm from './SignInForm';
@@ -84,9 +85,14 @@ const App = () => {
                 } />
               </Route>
               
-              <Route path='users' element={
-                <Users />
-              } />
+              <Route path='users'>
+                <Route index element={
+                  <Users token={token} />
+                } />
+                <Route path=':userId' element={
+                  <User token={token} />
+                } />
+              </Route>
               <Route path='comments' element={
                 <Comments />
               } />

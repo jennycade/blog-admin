@@ -107,3 +107,20 @@ export const getPost = async (postId, token) => {
     return json;
   }
 }
+
+export const getUser = async (userId, token) => {
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND_URI}/users/${userId}`,
+    {
+      method: 'GET',
+      headers: getAPIHeaders(token),
+    },
+  );
+  const json = await response.json();
+
+  if (!response.ok) {
+    return { errorMessage: json.error };
+  } else {
+    return json;
+  }
+}
