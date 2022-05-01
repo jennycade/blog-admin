@@ -77,6 +77,7 @@ function User(props) {
                 <dd><time>{user.updatedAt}</time></dd>
 
                 {/* TODO: add posts */}
+                {/* TODO: add comments */}
 
               </dl>
             </>
@@ -84,8 +85,71 @@ function User(props) {
 
           { display === 'edit' && (
             <form>
-              <label>Display name</label>
-              <input type="text"/>
+              <label
+                className="form-label"
+                for="displayName"
+              >Display name</label>
+              <input
+                type="text"
+                className="form-control"
+                id="displayName"
+                value={user.displayName}
+              />
+
+              <fieldset>
+                <legend>Roles</legend>
+
+                <div className="form-check">
+                  <input
+                    type="checkbox"
+                    className="form-check-input"
+                    id="commenterRole"
+                    checked
+                    disabled
+                  />
+                  <label
+                    for="commenterRole"
+                    className="form-check-label"
+                  >Commentor (required)</label>
+                </div>
+
+                <div className="form-check">
+                  <input
+                    type="checkbox"
+                    className="form-check-input"
+                    id="authorRole"
+                    checked={user.roles.includes('author')}
+                  />
+                  <label
+                    for="authorRole"
+                    className="form-check-label"
+                  >Author</label>
+                </div>
+
+                <div className="form-check">
+                  <input
+                    type="checkbox"
+                    className="form-check-input"
+                    id="adminRole"
+                    checked={user.roles.includes('admin')}
+                  />
+                  <label
+                    for="adminRole"
+                    className="form-check-label"
+                  >Admin</label>
+                </div>
+
+              </fieldset>
+              
+              <button
+                type="submit"
+                className="btn btn-primary"
+              >Submit</button>
+
+
+              {/* TODO: complete form */}
+              {/* TODO: hook it up! */}
+
             </form>
           )}
 
