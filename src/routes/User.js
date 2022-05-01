@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 
 // DB
 import { getUser } from '../databaseFunctions';
+import Input from '../Input';
 
 // components
 import Loading from '../Loading';
@@ -30,6 +31,7 @@ function User(props) {
   }, [token, userId]);
 
   // functions
+  // display
   const toggleView = () => {
     if (display === 'view') {
       setDisplay('edit');
@@ -85,15 +87,12 @@ function User(props) {
 
           { display === 'edit' && (
             <form>
-              <label
-                className="form-label"
-                for="displayName"
-              >Display name</label>
-              <input
-                type="text"
-                className="form-control"
+              <Input
+                label="Display name"
                 id="displayName"
+                type="text"
                 value={user.displayName}
+                onChange={() => {}}
               />
 
               <fieldset>
@@ -146,8 +145,6 @@ function User(props) {
                 className="btn btn-primary"
               >Submit</button>
 
-
-              {/* TODO: complete form */}
               {/* TODO: hook it up! */}
 
             </form>
