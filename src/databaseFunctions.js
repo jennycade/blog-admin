@@ -149,6 +149,40 @@ export const getUser = async (userId, token) => {
   }
 }
 
+export const getUserPosts = async (userId, token) => {
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND_URI}/users/${userId}/posts`,
+    {
+      method: 'GET',
+      headers: getAPIHeaders(token),
+    },
+  );
+  const json = await response.json();
+
+  if (!response.ok) {
+    return { errorMessage: json.error };
+  } else {
+    return json;
+  }
+}
+
+export const getUserComments = async (userId, token) => {
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND_URI}/users/${userId}/comments`,
+    {
+      method: 'GET',
+      headers: getAPIHeaders(token),
+    },
+  );
+  const json = await response.json();
+
+  if (!response.ok) {
+    return { errorMessage: json.error };
+  } else {
+    return json;
+  }
+}
+
 // COMMENTS
 export const getComments = async (token) => {
   const response = await fetch(

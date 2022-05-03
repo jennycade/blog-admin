@@ -2,7 +2,11 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 
 // DB
-import { getUser } from '../databaseFunctions';
+import {
+  getUser,
+  getUserComments,
+  getUserPosts,
+} from '../databaseFunctions';
 import Input from '../Input';
 
 // components
@@ -14,6 +18,8 @@ function User(props) {
 
   // state
   const [user, setUser] = useState({});
+  const [posts, setPosts] = useState([]);
+  const [comments, setComments] = useState([]);
   const [display, setDisplay] = useState('view');
 
   // params
@@ -25,7 +31,14 @@ function User(props) {
       const fetchUser = async () => {
         const newUser = await getUser(userId, token);
         setUser(newUser);
+
+        const newComments = await getUserComments(userId, token);
+        setComments(newComments);
+        
+        const newPosts = await getUserPosts(userId, token);
+        setPosts(newPosts);
       }
+      
       fetchUser();
     }
   }, [token, userId]);
@@ -78,8 +91,40 @@ function User(props) {
                 <dt>Last updated</dt>
                 <dd><time>{user.updatedAt}</time></dd>
 
-                {/* TODO: add posts */}
-                {/* TODO: add comments */}
+                <h2>Posts</h2>
+                { posts.length === 0 ? 
+                  <p>No posts</p>
+                  :
+                  <ul>
+                    {posts.map((post) => (
+                      <li key={post._id}>
+                        <Link to={`/posts/${post._id}`}>
+                          {post.title}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                }
+
+                <h2>Comments</h2>
+                { comments.length === 0 ?
+                  <p>No comments</p>
+                  :
+                  <ul>
+                    {comments.map((comment) => (
+                      <li key={comment._id}>
+                        <Link to={`/comments/${comment._id}`}>
+                          {/* TODO: fix this link! */}
+                          {comment.text}
+                        </Link>
+                        {' on '}
+                        <Link to={`/posts/${comment.post._id}`}>
+                          {comment.post.title}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                }
 
               </dl>
             </>
