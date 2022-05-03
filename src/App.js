@@ -11,10 +11,11 @@ import {
 // routes
 import Home from './routes/Home';
 import Posts from './routes/Posts';
-import Users from './routes/Users';
-import Comments from './routes/Comments';
 import Post from './routes/Post';
+import Users from './routes/Users';
 import User from './routes/User';
+import Comments from './routes/Comments';
+import Comment from './routes/Comment';
 
 // components
 import SignInForm from './SignInForm';
@@ -93,9 +94,19 @@ const App = () => {
                   <User token={token} />
                 } />
               </Route>
-              <Route path='comments' element={
-                <Comments />
-              } />
+
+              <Route path='comments'>
+                <Route index element={
+                  <Comments token={token} />
+                } />
+                
+                <Route path=':commentId' element={
+                  <Comment token={token} />
+                } />
+                  
+              </Route>
+
+              
             </Routes>
 
           </main>

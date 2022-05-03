@@ -148,3 +148,38 @@ export const getUser = async (userId, token) => {
     return json;
   }
 }
+
+// COMMENTS
+export const getComments = async (token) => {
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND_URI}/comments`,
+    {
+      method: 'GET',
+      headers: getAPIHeaders(token),
+    },
+  );
+  const json = await response.json();
+
+  if (!response.ok) {
+    return {errorMessage: json.error};
+  } else {
+    return json;
+  }
+}
+
+export const getComment = async (commentId, token) => {
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND_URI}/comments/${commentId}`,
+    {
+      method: 'GET',
+      headers: getAPIHeaders(token),
+    },
+  );
+  const json = await response.json();
+
+  if (!response.ok) {
+    return { errorMessage: json.error };
+  } else {
+    return json;
+  }
+}
