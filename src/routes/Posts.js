@@ -6,6 +6,8 @@ import {
   getPosts
 } from '../databaseFunctions';
 
+// TODO: Hide table while loading
+
 function Posts(props) {
   // props
   const {

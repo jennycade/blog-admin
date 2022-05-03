@@ -18,6 +18,26 @@ describe('Form component', () => {
     />);
     
     expect(screen.getByLabelText('Name')).toBeInTheDocument();
+  });
 
+  it(`renders an editable textbox`, async () => {
+    const formData = [
+      {
+        label: 'Name',
+        id: 'name',
+        type: 'text',
+        value: 'Jenny',
+      },
+    ];
+
+    render(<Form
+      formData={formData}
+    />);
+    
+    // type
+    const field = screen.getByLabelText('Name');
+    await userEvent.type(field, 'my name');
+
+    expect(field.value).toBe('my name');
   });
 });

@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 
 export const shouldUseLocalStorageTokenAndUser = () => {
   const token = localStorage.getItem('token');
@@ -36,6 +36,9 @@ export const getAPIHeaders = (token = '') => {
 export const signInUser = async (username, password) => {
   // success: return {token, user}
   // fail: return {errorMessage}
+
+  // TODO: fail unless user has admin or author role
+  
   const response = await fetch(
     `${process.env.REACT_APP_BACKEND_URI}/login`,
     {
@@ -74,6 +77,8 @@ export const registerUser = async (username, password, displayName) => {
   }
 };
 
+// POSTS
+
 export const getPosts = async (token) => {
   const response = await fetch(
     `${process.env.REACT_APP_BACKEND_URI}/posts`,
@@ -103,6 +108,25 @@ export const getPost = async (postId, token) => {
 
   if (!response.ok) {
     return { errorMessage: json.error };
+  } else {
+    return json;
+  }
+}
+
+// USERS
+
+export const getUsers = async (token) => {
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND_URI}/users`,
+    {
+      method: 'GET',
+      headers: getAPIHeaders(token),
+    },
+  );
+  const json = await response.json();
+
+  if (!response.ok) {
+    return {errorMessage: json.error};
   } else {
     return json;
   }

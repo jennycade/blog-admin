@@ -1,8 +1,12 @@
+import { useState } from "react";
 import Input from "./Input";
 
 function Form(props) {
   // props
   const { formData } = props;
+
+  // state
+  const [values, setValues] = useState({});
 
   return(
     <form>
