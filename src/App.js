@@ -20,7 +20,6 @@ import Comment from './routes/Comment';
 // components
 import SignInForm from './SignInForm';
 import NavBar from './NavBar';
-import NavBarExample from './examples/navbarExample';
 
 // API stuff
 import {
