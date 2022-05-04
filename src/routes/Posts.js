@@ -48,6 +48,9 @@ function Posts(props) {
               <th>
                 Created
               </th>
+              <th>
+                Last updated
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -72,6 +75,9 @@ function Posts(props) {
                   <time dateTime={post.createdAt}>
                     {post.createdAt}
                   </time>
+                </td>
+                <td>
+                  {post.updatedAt}
                 </td>
               </tr>
             ))}
