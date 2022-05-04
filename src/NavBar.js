@@ -37,7 +37,7 @@ const NavBar = (props) => {
           <span className="navbar-toggler-icon"><MenuIcon /></span>
         </button>
 
-        <div className={`collapsible ${expand ? 'expanded' : 'collapsed'}`}
+        <div className={`collapsible collapse-mobile ${expand ? 'expanded' : 'collapsed'}`}
         >
           <menu>
             <li>
