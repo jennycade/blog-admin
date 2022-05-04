@@ -9,12 +9,22 @@ main {
   border-radius: 5px;
 }
 
+/* LINKS */
+a {
+  color: #1456b8;
+}
+a:visited {
+  color: #583d8f;
+}
+
 /* BUTTONS */
 button {
-  transition: filter 100ms;
+  background-color: #0a5c2b;
+  color: white;
+  transition: filter 200ms;
 }
 button:hover {
-  filter: brightness(80%);
+  filter: brightness(120%);
 }
 
 /* TABLES */
@@ -27,7 +37,10 @@ table {
   min-width: min-content;
 }
 tr {
-  border-bottom: 1px solid #ababab;
+  border-bottom: 1px solid #afb6b2;
+}
+td, th {
+  padding: 1rem 0.5rem;
 }
 
 /* DEFINITION LISTS */
@@ -48,4 +61,15 @@ ul {
 }
 ul>li {
   margin-bottom: 1rem;
+}
+
+/* COLLAPSIBLE */
+.collapsible.collapsed:not(:focus):not(:active) {
+  clip: rect(0 0 0 0); 
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap; 
+  width: 1px;
 }
