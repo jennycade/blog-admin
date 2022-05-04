@@ -113,6 +113,23 @@ export const getPost = async (postId, token) => {
   }
 }
 
+export const getPostComments = async (postId, token) => {
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND_URI}/posts/${postId}/comments`,
+    {
+      method: 'GET',
+      headers: getAPIHeaders(token),
+    },
+  );
+  const json = await response.json();
+
+  if (!response.ok) {
+    return { errorMessage: json.error };
+  } else {
+    return json;
+  }
+};
+
 // USERS
 
 export const getUsers = async (token) => {
