@@ -6,7 +6,8 @@ import {
   getPosts
 } from '../databaseFunctions';
 
-// TODO: Hide table while loading
+// components
+import Loading from '../Loading';
 
 function Posts(props) {
   // props
@@ -31,50 +32,52 @@ function Posts(props) {
   return (
     <>
       <h1>Posts</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>
-              Title
-            </th>
-            <th>
-              Author
-            </th>
-            <th>
-              Status
-            </th>
-            <th>
-              Created
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {posts.map(post => (
-            <tr key={post._id}>
-              <td>
-                <Link to={`/posts/${post._id}`} >
-                  {post.title}
-                </Link>
-              </td>
-              <td>
-                <Link to={`/users/${post.author._id}`} >
-                  {post.author.displayName}
-                </Link>
-              </td>
-              <td>
-                <span className={`pill status ${post.postStatus}`}>
-                  {post.postStatus}
-                </span>
-              </td>
-              <td>
-                <time dateTime={post.createdAt}>
-                  {post.createdAt}
-                </time>
-              </td>
+      { posts.length === 0 ? <Loading /> : 
+        <table>
+          <thead>
+            <tr>
+              <th>
+                Title
+              </th>
+              <th>
+                Author
+              </th>
+              <th>
+                Status
+              </th>
+              <th>
+                Created
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {posts.map(post => (
+              <tr key={post._id}>
+                <td>
+                  <Link to={`/posts/${post._id}`} >
+                    {post.title}
+                  </Link>
+                </td>
+                <td>
+                  <Link to={`/users/${post.author._id}`} >
+                    {post.author.displayName}
+                  </Link>
+                </td>
+                <td>
+                  <span className={`pill status ${post.postStatus}`}>
+                    {post.postStatus}
+                  </span>
+                </td>
+                <td>
+                  <time dateTime={post.createdAt}>
+                    {post.createdAt}
+                  </time>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      }
     </>
   );
 };

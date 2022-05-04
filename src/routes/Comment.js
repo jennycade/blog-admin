@@ -18,7 +18,6 @@ function Comment (props) {
 
   // effect: load comment
   useEffect(() => {
-    // this isn't running. Why?
     if (token && commentId) {
       const fetchComment = async () => {
         const newComment = await getComment(commentId, token);
