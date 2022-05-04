@@ -8,6 +8,7 @@ import {
 
 // components
 import Loading from '../Loading';
+import Time from '../Time';
 
 function Posts(props) {
   // props
@@ -72,12 +73,12 @@ function Posts(props) {
                   </span>
                 </td>
                 <td>
-                  <time dateTime={post.createdAt}>
-                    {post.createdAt}
-                  </time>
+                  <Time timeString={post.createdAt}/>
                 </td>
                 <td>
-                  {post.updatedAt}
+                  { post.createdAt === post.updatedAt ? 'never updated' : 
+                    <Time timeString={post.updatedAt}/>
+                  }
                 </td>
               </tr>
             ))}
