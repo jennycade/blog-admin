@@ -6,6 +6,7 @@ import { getPost, getPostComments } from '../databaseFunctions';
 
 // components
 import Loading from '../Loading';
+import Time from '../Time';
 
 function Post(props) {
   // props
@@ -45,7 +46,7 @@ function Post(props) {
         <p>{'Posted by '}
           <Link to={`/users/${post.author._id}`}>{post.author.displayName}</Link>
           {' on '}
-          <time dateTime={post.createdAt}>{post.createdAt}</time>
+          <Time dateInput={post.createdAt} />
         </p>
 
         <article>
@@ -102,11 +103,11 @@ function Post(props) {
                   </td>
 
                   <td>
-                    {comment.createdAt}
+                    <Time dateInput={comment.createdAt} />
                   </td>
 
                   <td>
-                    {comment.updatedAt}
+                    <Time dateInput={comment.updatedAt} />
                   </td>
                 </tr>
               ))}

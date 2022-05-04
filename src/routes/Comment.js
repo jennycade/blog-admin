@@ -5,6 +5,7 @@ import { useParams, Link } from 'react-router-dom';
 
 // components
 import Loading from '../Loading';
+import Time from '../Time';
 
 function Comment (props) {
   // props
@@ -55,12 +56,12 @@ function Comment (props) {
 
           <dt>Created</dt>
           <dd>
-            {comment.createdAt}
+            <Time dateInput={comment.createdAt} />
           </dd>
 
           <dt>Last updated</dt>
           <dd>
-            {comment.updatedAt}
+          <Time dateInput={comment.updatedAt} />
           </dd>
         </dl>
       }

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 // components
 import Loading from '../Loading';
+import Time from '../Time';
 
 function Users(props) {
   // props
@@ -77,11 +78,11 @@ function Users(props) {
                 </td>
 
                 <td>
-                  {user.createdAt}
+                  <Time dateInput={user.createdAt} />
                 </td>
 
                 <td>
-                  {user.updatedAt}
+                  <Time dateInput={user.updatedAt} />
                 </td>
               </tr>
             ))}

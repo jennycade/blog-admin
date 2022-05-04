@@ -11,6 +11,7 @@ import Input from '../Input';
 
 // components
 import Loading from '../Loading';
+import Time from '../Time';
 
 function User(props) {
   // props
@@ -86,10 +87,10 @@ function User(props) {
                 }
                 
                 <dt>User created</dt>
-                <dd><time>{user.createdAt}</time></dd>
+                <dd><Time dateInput={user.createdAt}/></dd>
 
                 <dt>Last updated</dt>
-                <dd><time>{user.updatedAt}</time></dd>
+                <dd><Time dateInput={user.updatedAt}/></dd>
 
                 <h2>Posts</h2>
                 { posts.length === 0 ? 

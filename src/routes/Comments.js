@@ -5,6 +5,7 @@ import { Link, } from 'react-router-dom';
 
 // components
 import Loading from '../Loading';
+import Time from '../Time';
 
 function Comments(props) {
   // props
@@ -87,11 +88,11 @@ function Comments(props) {
                 </td>
 
                 <td>
-                  {comment.createdAt}
+                  <Time dateInput={comment.createdAt} />
                 </td>
 
                 <td>
-                  {comment.updatedAt}
+                  <Time dateInput={comment.updatedAt} />
                 </td>
               </tr>
             ))}

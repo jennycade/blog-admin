@@ -73,11 +73,11 @@ function Posts(props) {
                   </span>
                 </td>
                 <td>
-                  <Time timeString={post.createdAt}/>
+                  <Time dateInput={post.createdAt}/>
                 </td>
                 <td>
                   { post.createdAt === post.updatedAt ? 'never updated' : 
-                    <Time timeString={post.updatedAt}/>
+                    <Time dateInput={post.updatedAt}/>
                   }
                 </td>
               </tr>
