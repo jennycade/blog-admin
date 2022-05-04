@@ -33,7 +33,7 @@ function Posts(props) {
     <>
       <h1>Posts</h1>
       { posts.length === 0 ? <Loading /> : 
-        <table>
+        <div className='table-container'><table>
           <thead>
             <tr>
               <th>
@@ -76,7 +76,7 @@ function Posts(props) {
               </tr>
             ))}
           </tbody>
-        </table>
+        </table></div>
       }
     </>
   );

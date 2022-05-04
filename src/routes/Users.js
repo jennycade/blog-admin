@@ -33,7 +33,7 @@ function Users(props) {
 
       { users.length === 0 ? <Loading /> :
 
-        <table>
+        <div className='table-container'><table>
           <thead>
             <tr>
 
@@ -86,7 +86,7 @@ function Users(props) {
               </tr>
             ))}
           </tbody>
-        </table>
+        </table></div>
       }
 
     </>

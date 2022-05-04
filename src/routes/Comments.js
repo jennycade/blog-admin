@@ -30,7 +30,7 @@ function Comments(props) {
       <h1>Comments</h1>
 
       { comments.length === 0 ? <Loading /> : 
-        <table>
+        <div className='table-container'><table>
           <thead>
             <tr>
 
@@ -96,7 +96,7 @@ function Comments(props) {
               </tr>
             ))}
           </tbody>
-        </table>
+        </table></div>
       }
     </>
   );

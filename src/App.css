@@ -16,3 +16,36 @@ button {
 button:hover {
   filter: brightness(80%);
 }
+
+/* TABLES */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+table {
+  border-collapse: collapse;
+  min-width: min-content;
+}
+tr {
+  border-bottom: 1px solid #ababab;
+}
+
+/* DEFINITION LISTS */
+dt {
+  margin-top: 1rem;
+  font-weight: bold;
+}
+dd {
+  margin: 0;
+  padding: 0;
+}
+
+/* UNORDERED LISTS */
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+ul>li {
+  margin-bottom: 1rem;
+}

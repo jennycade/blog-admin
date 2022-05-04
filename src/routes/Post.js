@@ -55,7 +55,7 @@ function Post(props) {
         <h2>Comments</h2>
 
         { comments.length === 0 ? (<p>No comments</p>) : 
-          <table>
+          <div className='table-container'><table>
             <thead>
               <tr>
 
@@ -111,7 +111,7 @@ function Post(props) {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </table></div>
         }
       </>)
     }
