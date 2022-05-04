@@ -18,6 +18,7 @@ function Comment (props) {
 
   // effect: load comment
   useEffect(() => {
+    // this isn't running. Why?
     if (token && commentId) {
       const fetchComment = async () => {
         const newComment = await getComment(commentId, token);
@@ -26,12 +27,12 @@ function Comment (props) {
 
       fetchComment();
     }
-  }, [token, commentId]);
+  }, [commentId, token]);
 
   return (
     <>
       <h1>Comment detail</h1>
-      { Object.keys(comment) === 0 ? <Loading /> : 
+      { Object.keys(comment).length === 0 ? <Loading /> : 
         <dl>
 
           <dt>Post</dt>
