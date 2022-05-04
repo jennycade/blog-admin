@@ -1,36 +1,49 @@
-// import 'bootstrap/dist/js';
+// css
+import './NavBar.css';
+
 import {
   NavLink
 } from 'react-router-dom';
+
+// icons
+import MenuIcon from '@mui/icons-material/Menu';
+
+// react
+import {useState} from 'react';
 
 const NavBar = (props) => {
   // props
   const { activeSection } = props;
 
+  // state
+  const [expand, setExpand] = useState(false);
+
+  // functions
+  const handleMenuButtonClick = () => {
+    // toggle expand
+    const newExpandValue = !expand;
+    setExpand(newExpandValue);
+  }
+
   return (
-    <nav className="navbar navbar-expand-lg">
-      <div className="container-fluid">
+    <nav>
+      <div>
 
         <button
           className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
           aria-label="Toggle navigation"
+          onClick={handleMenuButtonClick}
         >
-          <span className="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"><MenuIcon /></span>
         </button>
 
-        <div className="collapse navbar-collapse"
-          id="navbarSupportedContent"
+        <div className={`collapsible ${expand ? 'expanded' : 'collapsed'}`}
         >
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
+          <menu>
+            <li>
               <NavLink
                 className={
-                  `nav-link${activeSection === 'home' ? ' active' : ''}`
+                  activeSection === 'home' ? ' active' : ''
                 }
                 to="/"
               >
@@ -38,10 +51,10 @@ const NavBar = (props) => {
               </NavLink>
             </li>
 
-            <li className="nav-item">
+            <li>
               <NavLink
                 className={
-                  `nav-link${activeSection === 'posts' ? ' active' : ''}`
+                  activeSection === 'posts' ? ' active' : ''
                 }
                 to="/posts"
               >
@@ -49,10 +62,10 @@ const NavBar = (props) => {
               </NavLink>
             </li>
 
-            <li className="nav-item">
+            <li>
               <NavLink
                 className={
-                  `nav-link${activeSection === 'users' ? ' active' : ''}`
+                  activeSection === 'users' ? ' active' : ''
                 }
                 to="/users"
               >
@@ -60,10 +73,10 @@ const NavBar = (props) => {
               </NavLink>
             </li>
 
-            <li className="nav-item">
+            <li>
               <NavLink
                 className={
-                  `nav-link${activeSection === 'comments' ? ' active' : ''}`
+                  activeSection === 'comments' ? ' active' : ''
                 }
                 to="/comments"
               >
@@ -71,7 +84,7 @@ const NavBar = (props) => {
               </NavLink>
             </li>
 
-          </ul>
+          </menu>
         </div>
       </div>
     </nav>

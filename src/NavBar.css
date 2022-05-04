@@ -1,0 +1,39 @@
+.navbar-toggler {
+  background-color: blue;
+  border-radius: 3px;
+  border: 0px;
+  padding: 0.25rem 0.5rem;
+}
+.navbar-toggler svg {
+  fill: white;
+}
+
+menu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+menu>li>a {
+  color: blue;
+  text-decoration: none;
+}
+
+menu>li>a.active {
+  font-weight: bold;
+}
+
+/* collapse */
+.collapsible.collapsed:not(:focus):not(:active) {
+  clip: rect(0 0 0 0); 
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap; 
+  width: 1px;
+}

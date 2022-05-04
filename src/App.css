@@ -1,0 +1,18 @@
+body {
+  min-height: 100vh;
+  background: linear-gradient(163deg, #C6FFDD, #FBD786, #f7797d);
+  padding: 1rem;
+}
+main {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+/* BUTTONS */
+button {
+  transition: filter 100ms;
+}
+button:hover {
+  filter: brightness(80%);
+}
