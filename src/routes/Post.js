@@ -6,16 +6,16 @@ import { getPost, getPostComments } from '../databaseFunctions';
 
 // components
 import Loading from '../Loading';
+import PostForm from '../PostForm';
 import Time from '../Time';
 
-function Post(props) {
-  // props
-  const { token } = props;
+function Post({ token }) {
 
   // state
   const [post, setPost] = useState({});
   const [comments, setComments] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [editing, setEditing] = useState(false);
 
   // params
   const { postId } = useParams();
@@ -37,84 +37,104 @@ function Post(props) {
       fetchPost(postId, token);
     }
   }, [postId, token]);
+
+  // functions
+  const toggleEdit = () => {
+    setEditing(!editing);
+  }
   
   return (
     <>
-    { isLoading || Object.keys(post).length === 0 ? <Loading /> : (
+    { (isLoading || Object.keys(post).length === 0) &&
+      <Loading />
+    }
+
+    { !isLoading && editing && (
       <>
-        <h1>{post.title}</h1>
-        <p>{'Posted by '}
-          <Link to={`/users/${post.author._id}`}>{post.author.displayName}</Link>
-          {' on '}
-          <Time dateInput={post.createdAt} />
-        </p>
+        <h1>Update post</h1>
+        <PostForm
+          post={post}
+          updatePost={() => {}}
+        />
+      </>
+    )}
 
-        <article>
-          {post.text}
-        </article>
+    { !isLoading && !editing && (
+        <>
+          <h1>{post.title}</h1>
+          <p>{'Posted by '}
+            <Link to={`/users/${post.author._id}`}>{post.author.displayName}</Link>
+            {' on '}
+            <Time dateInput={post.createdAt} />
+          </p>
 
-        <h2>Comments</h2>
+          <article>
+            {post.text}
+          </article>
 
-        { comments.length === 0 ? (<p>No comments</p>) : 
-          <div className='table-container'><table>
-            <thead>
-              <tr>
+          <h2>Comments</h2>
 
-                <th>
-                  link
-                </th>
+          { comments.length === 0 ? (<p>No comments</p>) : 
+            <div className='table-container'><table>
+              <thead>
+                <tr>
 
-                <th>
-                  Author
-                </th>
+                  <th>
+                    link
+                  </th>
 
-                <th>
-                  Text
-                </th>
+                  <th>
+                    Author
+                  </th>
 
-                <th>
-                  Created
-                </th>
+                  <th>
+                    Text
+                  </th>
 
-                <th>
-                  Updated
-                </th>
+                  <th>
+                    Created
+                  </th>
 
-              </tr>
-            </thead>
+                  <th>
+                    Updated
+                  </th>
 
-            <tbody>
-              { comments.map((comment) => (
-                <tr key={comment._id}>
-                  <td>
-                    <Link to={`/comments/${comment._id}`}>
-                      link
-                    </Link>
-                  </td>
-
-                  <td>
-                    <Link to={`/users/${comment.author._id}`}>
-                      {comment.author.displayName}
-                    </Link>
-                  </td>
-
-                  <td>
-                    {comment.text}
-                  </td>
-
-                  <td>
-                    <Time dateInput={comment.createdAt} />
-                  </td>
-
-                  <td>
-                    <Time dateInput={comment.updatedAt} />
-                  </td>
                 </tr>
-              ))}
-            </tbody>
-          </table></div>
-        }
-      </>)
+              </thead>
+
+              <tbody>
+                { comments.map((comment) => (
+                  <tr key={comment._id}>
+                    <td>
+                      <Link to={`/comments/${comment._id}`}>
+                        link
+                      </Link>
+                    </td>
+
+                    <td>
+                      <Link to={`/users/${comment.author._id}`}>
+                        {comment.author.displayName}
+                      </Link>
+                    </td>
+
+                    <td>
+                      {comment.text}
+                    </td>
+
+                    <td>
+                      <Time dateInput={comment.createdAt} />
+                    </td>
+
+                    <td>
+                      <Time dateInput={comment.updatedAt} />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table></div>
+          }
+        </>
+      )
     }
       
     </>

@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 import Form from './Form';
 
 describe('Form component', () => {
-  it('renders a form with a single text input\'s label', () => {
+  xit('renders a form with a single text input\'s label', () => {
     const formData = [{
       label: 'Name',
       id: 'name',
@@ -20,7 +20,7 @@ describe('Form component', () => {
     expect(screen.getByLabelText('Name')).toBeInTheDocument();
   });
 
-  it(`renders an editable textbox`, async () => {
+  xit(`renders an editable textbox`, async () => {
     const formData = [
       {
         label: 'Name',

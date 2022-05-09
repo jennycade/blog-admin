@@ -113,6 +113,10 @@ export const getPost = async (postId, token) => {
   }
 }
 
+export const updatePost = async (postId, post) => {
+  
+}
+
 export const getPostComments = async (postId, token) => {
   const response = await fetch(
     `${process.env.REACT_APP_BACKEND_URI}/posts/${postId}/comments`,
@@ -234,3 +238,28 @@ export const getComment = async (commentId, token) => {
     return json;
   }
 }
+
+
+// AUTH
+// functions to check user permissions from the db
+// possibly redundant? API already checks db for edits.
+export const isUserPostAuthor = (post, userId) => {
+  return post.author._id === userId;
+};
+
+export const isUserCommentAuthor = (comment, userId) => {
+  return comment.author._id === userId;
+};
+
+export const isUserSelf = (user, userId) => {
+  return user._id === userId;
+};
+
+export const isUserAdmin = async (userId) => {
+  const user = await getUser(userId);
+  if (user.errorMessage) {
+    // TODO: handle error
+  } else {
+    return user.roles.includes('admin');
+  }
+};

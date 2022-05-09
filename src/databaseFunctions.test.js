@@ -1,6 +1,10 @@
 import {
   getAPIHeaders,
   getLocalStorageTokenAndUser,
+  isUserPostAuthor,
+  isUserCommentAuthor,
+  isUserSelf,
+  isUserAdmin,
 } from './databaseFunctions';
 
 describe('getTokenAndUserFromLocalStorage', () => {
@@ -54,5 +58,73 @@ describe('getAPIheaders()', () => {
   it('returns headers with Content-Type and Accept when token is an empty string', () => {
     const result = getAPIHeaders('');
     expect(Object.keys(result.map)).not.toEqual(expect.arrayContaining(['authorization']));
+  });
+});
+
+describe('isUserPostAuthor', () => {
+  it('returns true if the userId matches the post author\'s userId', () => {
+    const fakePost = {
+      author: {
+        _id: 'bloop',
+      },
+    };
+    const userIsAuthor = isUserPostAuthor(fakePost, 'bloop');
+
+    expect(userIsAuthor).toBe(true);
+  });
+
+  it('returns false if the userId doesn\'t match the post author\'s userId', () => {
+    const fakePost = {
+      author: {
+        _id: 'bloop',
+      },
+    };
+    const userIsAuthor = isUserPostAuthor(fakePost, 'blsnoppoop');
+
+    expect(userIsAuthor).toBe(false);
+  });
+});
+
+describe('isUserCommentAuthor', () => {
+  it('returns true if the userId matches the comment author\'s userId', () => {
+    const fakeComment = {
+      author: {
+        _id: 'bloop',
+      },
+    };
+    const userIsAuthor = isUserCommentAuthor(fakeComment, 'bloop');
+
+    expect(userIsAuthor).toBe(true);
+  });
+
+  it('returns false if the userId doesn\'t match the comment author\'s userId', () => {
+    const fakeComment = {
+      author: {
+        _id: 'bloop',
+      },
+    };
+    const userIsAuthor = isUserCommentAuthor(fakeComment, 'blsnoppoop');
+
+    expect(userIsAuthor).toBe(false);
+  });
+});
+
+describe('isUserSelf', () => {
+  it('returns true if the userId matches the user\'s userId', () => {
+    const fakeUser = {
+      _id: 'bloop',
+    };
+    const userIsSelf = isUserSelf(fakeUser, 'bloop');
+
+    expect(userIsSelf).toBe(true);
+  });
+
+  it('returns false if the userId doesn\'t match the user\'s userId', () => {
+    const fakeUser = {
+      _id: 'bloop',
+    };
+    const userIsSelf = isUserSelf(fakeUser, 'blsnoppoop');
+
+    expect(userIsSelf).toBe(false);
   });
 });
