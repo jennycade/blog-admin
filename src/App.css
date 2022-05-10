@@ -3,11 +3,20 @@ body {
   background: linear-gradient(163deg, #C6FFDD, #FBD786, #f7797d);
 }
 main {
+  position: relative;
   margin: 0 1rem 1rem 1rem;
   background-color: white;
   padding: 1rem;
   border-radius: 5px;
 }
+
+/* POSITION */
+.top-right {
+  position: absolute;
+  top: calc(1rem + 21.440px);
+  right: 1rem;
+}
+
 
 /* LINKS */
 a {

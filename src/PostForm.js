@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import Form from './Form';
 import Input from './Input';
 
 function PostForm({post, updatePost, leaveForm}) {
@@ -36,7 +37,10 @@ function PostForm({post, updatePost, leaveForm}) {
   }
 
   return (
-    <form onSubmit={submitForm}>
+    <Form
+      handleSubmit={submitForm}
+      leaveForm={leaveForm}
+    >
       <Input
         label="Post title"
         id="title"
@@ -66,22 +70,7 @@ function PostForm({post, updatePost, leaveForm}) {
         ]}
       />
 
-      <div className="button-group">
-        <button
-          type="submit"
-          className="btn-primary"
-        >Submit</button>
-
-        {/* TODO: have this pull up a warning */}
-        <button
-          type="button"
-          className="btn-warning"
-          onClick={leaveForm}
-        >Cancel</button>
-
-      </div>
-
-    </form>
+    </Form>
   );
 };
 

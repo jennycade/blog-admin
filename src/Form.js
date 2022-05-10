@@ -1,30 +1,25 @@
-import { useState } from "react";
-import Input from "./Input";
+import { useState } from 'react';
 
-function Form(props) {
-  // props
-  const { formData } = props;
-
-  // state
-  const [values, setValues] = useState({});
+function Form({handleSubmit, leaveForm, children}) {
 
   return(
-    <form>
-      {
-        formData.map(field => {
-          return (
-            <>
-              <Input
-                id={field.id}
-                label={field.label}
-                type={field.type}
-                value={field.value}
-                onChange={() => {}}
-              />
-            </>
-          );
-        })
-      }
+    <form onSubmit={handleSubmit}>
+      { children }
+
+      <div className="button-group">
+        <button
+          type="submit"
+          className="btn-primary"
+        >Submit</button>
+
+        {/* TODO: have this pull up a warning */}
+        <button
+          type="button"
+          className="btn-warning"
+          onClick={leaveForm}
+        >Cancel</button>
+
+      </div>
     </form>
   );
 };
