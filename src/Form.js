@@ -2,25 +2,58 @@ import { useState } from 'react';
 
 function Form({handleSubmit, leaveForm, children}) {
 
-  return(
-    <form onSubmit={handleSubmit}>
-      { children }
+  // state
+  const [showCancelWarning, setShowCancelWarning] = useState(false);
 
-      <div className="button-group">
-        <button
-          type="submit"
-          className="btn-primary"
-        >Submit</button>
+  const handleCancelClick = () => {
+    setShowCancelWarning(true);
+  }
 
-        {/* TODO: have this pull up a warning */}
-        <button
-          type="button"
-          className="btn-warning"
-          onClick={leaveForm}
-        >Cancel</button>
+  const handleDontCancelClick = () => {
+    setShowCancelWarning(false);
+  }
 
-      </div>
-    </form>
+  const handleConfirmCancelClick = () => {
+    leaveForm();
+  }
+
+  return (
+    <>
+      { showCancelWarning && (
+        <div className='alert-container'>
+          <div className='alert'>
+            <p>Are you sure you want to leave this page? Your changes will not be saved.</p>
+            <div className="button-group">
+              <button onClick={handleConfirmCancelClick}>
+                Yes, discard changes
+              </button>
+              <button onClick={handleDontCancelClick}>
+                No, stay here
+              </button>
+            </div>
+          </div>
+        </div>
+      )
+
+      }
+      <form onSubmit={handleSubmit}>
+        { children }
+
+        <div className="button-group">
+          <button
+            type="submit"
+            className="btn-primary"
+          >Submit</button>
+
+          <button
+            type="button"
+            className="btn-warning"
+            onClick={handleCancelClick}
+          >Cancel</button>
+
+        </div>
+      </form>
+    </>
   );
 };
 

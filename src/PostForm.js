@@ -64,7 +64,6 @@ function PostForm({post, updatePost, leaveForm}) {
         value={postStatus}
         handleChange={handlePostStatusChange}
         options={[
-          {value: '', displayName: ''},
           {value: 'draft', displayName: 'Draft'},
           {value: 'published', displayName: 'Published'}
         ]}

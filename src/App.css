@@ -58,6 +58,31 @@ button:hover {
   gap: 5px;
 }
 
+/* ALERTS */
+.alert-container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  backdrop-filter: brightness(50%);
+}
+.alert {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+  max-width: 600px;
+  border-radius: 5px;
+  padding: 2rem;
+
+  background-color: white;
+}
+.alert .button-group {
+  justify-content: center;
+}
+
 /* FORMS */
 .form-field {
   display: flex;
