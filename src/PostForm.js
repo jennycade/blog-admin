@@ -12,7 +12,7 @@ function PostForm({post, updatePost, leaveForm}) {
   // functions
   const handleTitleChange = (e) => {
     // TODO: add validation
-    setTitle(e.target.title);
+    setTitle(e.target.value);
   }
 
   const handleTextChange = (e) => {
@@ -27,7 +27,12 @@ function PostForm({post, updatePost, leaveForm}) {
 
   const submitForm = (e) => {
     e.preventDefault();
-    updatePost(title, text);
+    const newPost = {
+      title,
+      text,
+      postStatus,
+    }
+    updatePost(newPost);
   }
 
   return (

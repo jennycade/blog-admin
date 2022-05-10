@@ -2,7 +2,11 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 
 // DB
-import { getPost, getPostComments } from '../databaseFunctions';
+import {
+  getPost,
+  getPostComments,
+  updatePost,
+} from '../databaseFunctions';
 
 // components
 import Loading from '../Loading';
@@ -42,6 +46,24 @@ function Post({ token }) {
   const toggleEdit = () => {
     setEditing(!editing);
   }
+
+  const handleUpdateSubmit = async (newPostData) => {
+    // validate
+    // TODO
+
+    // save to db
+    const newPost = await updatePost(postId, newPostData, token);
+
+    if (newPost.errorMessage) {
+      // TODO
+      console.log(newPost.errorMessage);
+    } else {
+      setPost(newPost);
+      setEditing(false);
+    }
+
+    // leave editing
+  }
   
   return (
     <>
@@ -54,7 +76,7 @@ function Post({ token }) {
         <h1>Update post</h1>
         <PostForm
           post={post}
-          updatePost={() => {}}
+          updatePost={handleUpdateSubmit}
           leaveForm={() => setEditing(false)}
         />
       </>

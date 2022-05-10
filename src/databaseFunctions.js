@@ -113,8 +113,34 @@ export const getPost = async (postId, token) => {
   }
 }
 
-export const updatePost = async (postId, post) => {
-  
+export const updatePost = async (postId, post, token) => {
+  const postData = {
+    title: post.title,
+    text: post.text,
+    postStatus: post.postStatus,
+  };
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND_URI}/posts/${postId}`,
+    {
+      method: 'PUT',
+      headers: getAPIHeaders(token),
+      body: JSON.stringify(postData),
+    }
+  );
+  const json = await response.json();
+  if (!response.ok) {
+    return {errorMessage: json.error};
+  } else {
+    return json; // updated post object
+  }
+}
+
+export const deletePost = async (postId, token) => {
+  // TODO
+}
+
+export const createPost = async (post, token) => {
+  // TODO
 }
 
 export const getPostComments = async (postId, token) => {
@@ -204,6 +230,18 @@ export const getUserComments = async (userId, token) => {
   }
 }
 
+export const updateUser = async (userId, user) => {
+  // TODO
+}
+
+export const deleteUser = async (userId) => {
+  // TODO
+}
+
+export const createUser = async (user) => {
+  // TODO
+}
+
 // COMMENTS
 export const getComments = async (token) => {
   const response = await fetch(
@@ -237,6 +275,18 @@ export const getComment = async (commentId, token) => {
   } else {
     return json;
   }
+}
+
+export const updateComment = async (commentId, comment) => {
+  // TODO
+}
+
+export const deleteComment = async (commentId) => {
+  // TODO
+}
+
+export const createComment = async (comment) => {
+  // TODO
 }
 
 
