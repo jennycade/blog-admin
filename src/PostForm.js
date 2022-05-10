@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import Input from './Input';
 
-function PostForm({post, updatePost}) {
+function PostForm({post, updatePost, leaveForm}) {
 
   // state
   const [title, setTitle] = useState(post.title);
@@ -61,9 +61,21 @@ function PostForm({post, updatePost}) {
         ]}
       />
 
-      <button
-        type="submit"
-      >Submit</button>
+      <div className="button-group">
+        <button
+          type="submit"
+          className="btn-primary"
+        >Submit</button>
+
+        {/* TODO: have this pull up a warning */}
+        <button
+          type="button"
+          className="btn-warning"
+          onClick={leaveForm}
+        >Cancel</button>
+
+      </div>
+
     </form>
   );
 };

@@ -22,9 +22,8 @@ function Input({
         <textarea
           id={id}
           onChange={handleChange}
-        >
-          {value}
-        </textarea>
+          value={value}
+        />
         )
       }
         

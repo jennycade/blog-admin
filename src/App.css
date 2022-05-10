@@ -19,12 +19,47 @@ a:visited {
 
 /* BUTTONS */
 button {
+  border: none;
+  padding: 0.5rem;
+  border-radius: 3px;
+  font-size: medium;
+  font-weight: bold;
   background-color: #0a5c2b;
+  border: 1px solid #0a5c2b;
   color: white;
-  transition: filter 200ms;
+  transition: filter 200ms ease-in-out;
 }
 button:hover {
   filter: brightness(120%);
+}
+
+.btn-primary {
+  background-color: #0a5c2b;
+  border-color: #0a5c2b;
+  color: white;
+}
+.btn-warning {
+  background-color: white;
+  color: #f7797d;
+  border-color: #f7797d;
+}
+.button-group {
+  display: flex;
+  margin: 5px 0;
+  gap: 5px;
+}
+
+/* FORMS */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+.form-field label {
+  font-weight: bold;
+}
+.form-field textarea {
+  height: 10rem;
 }
 
 /* TABLES */

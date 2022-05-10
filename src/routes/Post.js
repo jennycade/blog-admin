@@ -55,6 +55,7 @@ function Post({ token }) {
         <PostForm
           post={post}
           updatePost={() => {}}
+          leaveForm={() => setEditing(false)}
         />
       </>
     )}
@@ -62,6 +63,9 @@ function Post({ token }) {
     { !isLoading && !editing && (
         <>
           <h1>{post.title}</h1>
+
+          <button className="top-right" onClick={toggleEdit}>Edit</button>
+
           <p>{'Posted by '}
             <Link to={`/users/${post.author._id}`}>{post.author.displayName}</Link>
             {' on '}
