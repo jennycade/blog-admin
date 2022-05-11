@@ -17,7 +17,6 @@ main {
   right: 1rem;
 }
 
-
 /* LINKS */
 a {
   color: #1456b8;
@@ -52,10 +51,44 @@ button:hover {
   color: #f7797d;
   border-color: #f7797d;
 }
+.btn-link {
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+  color: #1456b8;
+  font-weight: inherit;
+}
 .button-group {
   display: flex;
   margin: 5px 0;
   gap: 5px;
+}
+
+/* DROPDOWNS */
+.dropdown-toggle {
+  /* vertically align text with dropdown icon */
+  display: flex;
+  align-items: center;
+}
+.dropdown {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  z-index: 2;
+
+  text-align: right;
+  list-style: none;
+
+  display: flex;
+  flex-direction: column;
+
+  background-color: white;
+  box-shadow: 2px 3px 10px 1px rgba(0, 0, 0, 0.05);
+  border-radius: 0 0 3px 3px;
+}
+.dropdown li {
+  padding: 0.5rem;
 }
 
 /* ALERTS */

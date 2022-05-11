@@ -7,20 +7,28 @@ import {
 
 // icons
 import MenuIcon from '@mui/icons-material/Menu';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 // react
 import {useState} from 'react';
 
-const NavBar = ({activeSection}) => {
+const NavBar = ({currentUser, signOut}) => {
 
   // state
   const [expand, setExpand] = useState(false);
+  const [openUserDropdown, setOpenUserDropdown] = useState(false);
 
   // functions
   const handleMenuButtonClick = () => {
     // toggle expand
     const newExpandValue = !expand;
     setExpand(newExpandValue);
+  }
+
+  const handleUserDropdownClick = () => {
+    // toggle openUserDropdown
+    const newOpenUserDropdownValue = !openUserDropdown;
+    setOpenUserDropdown(newOpenUserDropdownValue);
   }
 
   return (
@@ -37,12 +45,9 @@ const NavBar = ({activeSection}) => {
 
         <div className={`collapsible collapse-mobile ${expand ? 'expanded' : 'collapsed'}`}
         >
-          <menu>
+          <menu className='navbar'>
             <li>
               <NavLink
-                className={
-                  activeSection === 'home' ? ' active' : ''
-                }
                 to="/"
               >
                 Home
@@ -51,9 +56,6 @@ const NavBar = ({activeSection}) => {
 
             <li>
               <NavLink
-                className={
-                  activeSection === 'posts' ? ' active' : ''
-                }
                 to="/posts"
               >
                 Posts
@@ -62,9 +64,6 @@ const NavBar = ({activeSection}) => {
 
             <li>
               <NavLink
-                className={
-                  activeSection === 'users' ? ' active' : ''
-                }
                 to="/users"
               >
                 Users
@@ -73,17 +72,44 @@ const NavBar = ({activeSection}) => {
 
             <li>
               <NavLink
-                className={
-                  activeSection === 'comments' ? ' active' : ''
-                }
                 to="/comments"
               >
                 Comments
               </NavLink>
             </li>
 
+            <li className='current-user-dropdown flex-align-right-wrapper'>
+              <div className="flex-align-right">
+                <button
+                  className="btn-link dropdown-toggle"
+                  onClick={handleUserDropdownClick}
+                >
+                  {currentUser.displayName} <ArrowDropDownIcon />
+                </button>
+                { openUserDropdown &&
+                  <menu className="dropdown">
+                    <li>
+                      <NavLink to={`/users/${currentUser._id}`}>
+                        Profile
+                      </NavLink>
+                    </li>
+                    <li>
+                      <button
+                        className='btn-link'
+                        onClick={signOut}
+                      >
+                        Sign out
+                      </button>
+                    </li>
+                  </menu>
+                }
+              </div>
+            </li>
+
           </menu>
         </div>
+
+        
       </div>
     </nav>
   );

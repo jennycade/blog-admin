@@ -24,7 +24,8 @@ import NavBar from './NavBar';
 import {
   shouldUseLocalStorageTokenAndUser,
   getLocalStorageTokenAndUser,
-  signInUser
+  deleteLocalStorageTokenAndUser,
+  signInUser,
 } from './databaseFunctions';
 
 const App = () => {
@@ -55,9 +56,14 @@ const App = () => {
       setCurrentUser(result.user);
     }
   }
+  const handleSignOut = async () => {
+    deleteLocalStorageTokenAndUser();
+    setToken('');
+    setCurrentUser({});
+  }
 
   return (
-    <div className='app col-lg-8 mx-auto p-3 py-md-5'>
+    <div className='app'>
       {/* SIGN IN FORM */}
       { token === '' && (
         <SignInForm handleSignInSubmit={handleSignInSubmit} />
@@ -66,7 +72,10 @@ const App = () => {
       {/* WELCOME */}
       { token !== '' && (
         <>
-          <NavBar />
+          <NavBar
+            currentUser={currentUser}
+            signOut={handleSignOut}
+          />
 
           <main>
             <Routes>

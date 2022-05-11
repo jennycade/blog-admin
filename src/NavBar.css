@@ -7,7 +7,7 @@
   fill: white;
 }
 
-menu {
+.navbar {
   margin: 0;
   padding: 1rem 0;
   list-style: none;
@@ -15,29 +15,45 @@ menu {
 
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1rem;
 
   background-color: rgba(255, 255, 255, 0.3);
 }
 
-menu>li>a {
+.navbar li a {
   text-decoration: none;
 }
-menu>li>a:visited {
+.navbar li a:visited {
   color: #1456b8;
 }
 
-menu>li>a.active {
+.navbar li a.active {
   font-weight: bold;
+}
+
+/* DROPDOWN */
+.navbar .dropdown {
+  margin-top: 1rem;
 }
 
 /* desktops */
 @media (min-width: 600px) {
-  menu {
+  .navbar {
     flex-direction: row;
     padding: 1rem 2rem;
   }
   .navbar-toggler {
     display: none;
   }
+    /* flex to the right */
+  .flex-align-right-wrapper {
+    flex-grow: 100;
+    display: flex;
+    justify-content: end;
+  }
+  .flex-align-right {
+
+  }
+
 }
