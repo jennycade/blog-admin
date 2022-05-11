@@ -20,6 +20,7 @@ function Form({handleSubmit, leaveForm, children}) {
   return (
     <>
       { showCancelWarning && (
+        // TODO: abstract into <Alert> component
         <div className='alert-container'>
           <div className='alert'>
             <p>Are you sure you want to leave this page? Your changes will not be saved.</p>
