@@ -1,7 +1,17 @@
 body {
+  margin: 0;
+  font-family: sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
   background: linear-gradient(163deg, #C6FFDD, #FBD786, #f7797d);
 }
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
 main {
   position: relative;
   margin: 0 1rem 1rem 1rem;
@@ -37,8 +47,26 @@ button {
   color: white;
   transition: filter 200ms ease-in-out;
 }
-button:hover {
+button:hover, .link-button:hover {
   filter: brightness(120%);
+}
+/* fake button */
+.link-button {
+  display: block;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 3px;
+  font-size: medium;
+  font-weight: bold;
+  background-color: #0a5c2b;
+  border: 1px solid #0a5c2b;
+  color: white;
+  transition: filter 200ms ease-in-out;
+  cursor: default;
+}
+a.link-button, a.link-button:visited {
+  text-decoration: none;
+  color: white;
 }
 
 .btn-primary {

@@ -33,6 +33,9 @@ function Posts(props) {
   return (
     <>
       <h1>Posts</h1>
+      <Link to="/posts/new">
+        New post
+      </Link>
       { posts.length === 0 ? <Loading /> : 
         <div className='table-container'><table>
           <thead>

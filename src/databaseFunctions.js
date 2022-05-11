@@ -140,7 +140,25 @@ export const deletePost = async (postId, token) => {
 }
 
 export const createPost = async (post, token) => {
-  // TODO
+  const postData = {
+    title: post.title,
+    text: post.text,
+    postStatus: post.postStatus,
+  };
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND_URI}/posts/`,
+    {
+      method: 'POST',
+      headers: getAPIHeaders(token),
+      body: JSON.stringify(postData),
+    }
+  );
+  const json = await response.json();
+  if (!response.ok) {
+    return {errorMessage: json.error};
+  } else {
+    return json; // updated post object
+  }
 }
 
 export const getPostComments = async (postId, token) => {

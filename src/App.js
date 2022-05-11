@@ -11,6 +11,7 @@ import {
 import Home from './routes/Home';
 import Posts from './routes/Posts';
 import Post from './routes/Post';
+import NewPost from './routes/NewPost';
 import Users from './routes/Users';
 import User from './routes/User';
 import Comments from './routes/Comments';
@@ -87,6 +88,9 @@ const App = () => {
               <Route path='posts'>
                 <Route index element={
                   <Posts token={token} />
+                } />
+                <Route path='new' element={
+                  <NewPost token={token} />
                 } />
                 <Route path=':postId' element={
                   <Post token={token} />
