@@ -1,5 +1,8 @@
 import { useState } from 'react';
 
+// components
+import Alert from './Alert';
+
 function Form({handleSubmit, leaveForm, children}) {
 
   // state
@@ -21,19 +24,19 @@ function Form({handleSubmit, leaveForm, children}) {
     <>
       { showCancelWarning && (
         // TODO: abstract into <Alert> component
-        <div className='alert-container'>
-          <div className='alert'>
-            <p>Are you sure you want to leave this page? Your changes will not be saved.</p>
-            <div className="button-group">
+        <Alert
+          message="Are you sure you want to leave this page? Your changes will not be saved."
+          buttons={(
+            <>
               <button onClick={handleConfirmCancelClick}>
                 Yes, discard changes
               </button>
-              <button onClick={handleDontCancelClick}>
+              <button className="btn-warning" onClick={handleDontCancelClick}>
                 No, stay here
               </button>
-            </div>
-          </div>
-        </div>
+            </>
+          )}
+        />
       )
 
       }

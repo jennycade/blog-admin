@@ -5,6 +5,7 @@ import userEvent from '@testing-library/user-event';
 import Form from './Form';
 
 describe('Form component', () => {
+  // MAYBE TODO: Only show warning if inputs have changed
   it(`Shows a warning when user clicks the cancel button`, async () => {
     render(<Form />);
     const cancelButton = screen.getByRole('button', {name: /cancel/i});
