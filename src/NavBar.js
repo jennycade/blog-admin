@@ -11,9 +11,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 // react
 import {useState} from 'react';
 
-const NavBar = (props) => {
-  // props
-  const { activeSection } = props;
+const NavBar = ({activeSection}) => {
 
   // state
   const [expand, setExpand] = useState(false);
