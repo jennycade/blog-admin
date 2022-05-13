@@ -248,15 +248,33 @@ export const getUserComments = async (userId, token) => {
   }
 }
 
-export const updateUser = async (userId, user) => {
+export const updateUser = async (userId, user, token) => {
+  // convert roles array to booleans
+  const newUserData = {...user};
+  newUserData.isauthor = user.roles.includes('author').toString();
+  newUserData.isadmin = user.roles.includes('admin').toString();
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND_URI}/users/${userId}`,
+    {
+      method: 'PUT',
+      headers: getAPIHeaders(token),
+      body: JSON.stringify(newUserData),
+    },
+  );
+  const json = await response.json();
+
+  if (!response.ok) {
+    return { errorMessage: json.error };
+  } else {
+    return json;
+  }
+}
+
+export const deleteUser = async (userId, token) => {
   // TODO
 }
 
-export const deleteUser = async (userId) => {
-  // TODO
-}
-
-export const createUser = async (user) => {
+export const createUser = async (user, token) => {
   // TODO
 }
 

@@ -61,8 +61,6 @@ function Post({ token }) {
       setPost(newPost);
       setEditing(false);
     }
-
-    // leave editing
   }
   
   return (
