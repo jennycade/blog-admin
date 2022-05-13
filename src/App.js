@@ -14,6 +14,7 @@ import Post from './routes/Post';
 import NewPost from './routes/NewPost';
 import Users from './routes/Users';
 import User from './routes/User';
+import NewUser from './routes/NewUser';
 import Comments from './routes/Comments';
 import Comment from './routes/Comment';
 
@@ -100,6 +101,9 @@ const App = () => {
               <Route path='users'>
                 <Route index element={
                   <Users token={token} />
+                } />
+                <Route path='new' element={
+                  <NewUser token={token} />
                 } />
                 <Route path=':userId' element={
                   <User token={token} />

@@ -35,6 +35,7 @@ function NewPost ({token}) {
 
   return (
     <>
+      <h1>Create Post</h1>
       { postId === '' ? (
         <PostForm
           post={post}

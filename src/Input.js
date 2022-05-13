@@ -67,7 +67,7 @@ function Input({
         )
       }
         
-      { type === 'text' && (
+      { (type === 'text' || type === 'password') && (
         <input
           type={type}
           id={id}
