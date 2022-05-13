@@ -50,10 +50,7 @@
   .flex-align-right-wrapper {
     flex-grow: 100;
     display: flex;
-    justify-content: end;
-  }
-  .flex-align-right {
-
+    justify-content: flex-end;
   }
 
 }
