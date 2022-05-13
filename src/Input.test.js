@@ -59,4 +59,46 @@ describe('Input component', () => {
     const select = screen.getByRole('option', {name: 'Draft'});
     expect(select).toBeInTheDocument();
   });
+
+  it('renders a checkbox for each option with type="checkboxGroup', () => {
+    render(
+      <Input
+        label="Roles"
+        id="roles"
+        type="checkboxGroup"
+        value={[]}
+        options={[
+          {value: 'admin', displayName: 'Admin'},
+          {value: 'author', displayName: 'Author'}
+        ]}
+        handleChange={() => {}}
+      />
+    );
+
+    const checkboxes = screen.queryAllByRole('checkbox');
+    expect(checkboxes.length).toBe(2);
+  });
+
+  it('calls handleChange with new array when checkbox is clicked', async () => {
+    const handleChange = jest.fn();
+    render(
+      <Input
+        label="Roles"
+        id="roles"
+        type="checkboxGroup"
+        value={[]}
+        options={[
+          {value: 'admin', displayName: 'Admin'},
+          {value: 'author', displayName: 'Author'}
+        ]}
+        handleChange={handleChange}
+      />
+    );
+    
+    const adminCheckbox = screen.getByLabelText(/admin/i);
+    await userEvent.click(adminCheckbox);
+
+    expect(handleChange.mock.calls.length).toBe(1);
+    expect(handleChange.mock.calls[0][0]).toEqual(['admin']);
+  });
 });
