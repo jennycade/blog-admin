@@ -22,6 +22,9 @@ import Comment from './routes/Comment';
 import SignInForm from './SignInForm';
 import NavBar from './NavBar';
 
+// context
+import UserContext from './UserContext';
+
 // API stuff
 import {
   shouldUseLocalStorageTokenAndUser,
@@ -65,69 +68,71 @@ const App = () => {
   }
 
   return (
-    <div className='app'>
-      {/* SIGN IN FORM */}
-      { token === '' && (
-        <SignInForm handleSignInSubmit={handleSignInSubmit} />
-      )}
+    <UserContext.Provider value={currentUser}>
+      <div className='app'>
+        {/* SIGN IN FORM */}
+        { token === '' && (
+          <SignInForm handleSignInSubmit={handleSignInSubmit} />
+        )}
 
-      {/* WELCOME */}
-      { token !== '' && (
-        <>
-          <NavBar
-            currentUser={currentUser}
-            signOut={handleSignOut}
-          />
+        {/* WELCOME */}
+        { token !== '' && (
+          <>
+            <NavBar
+              currentUser={currentUser}
+              signOut={handleSignOut}
+            />
 
-          <main>
-            <Routes>
+            <main>
+              <Routes>
 
-              <Route path='/' element={
-                <Home />
-              } />
+                <Route path='/' element={
+                  <Home />
+                } />
 
-              <Route path='posts'>
-                <Route index element={
-                  <Posts token={token} />
-                } />
-                <Route path='new' element={
-                  <NewPost token={token} />
-                } />
-                <Route path=':postId' element={
-                  <Post token={token} />
-                } />
-              </Route>
-              
-              <Route path='users'>
-                <Route index element={
-                  <Users token={token} />
-                } />
-                <Route path='new' element={
-                  <NewUser token={token} />
-                } />
-                <Route path=':userId' element={
-                  <User token={token} />
-                } />
-              </Route>
-
-              <Route path='comments'>
-                <Route index element={
-                  <Comments token={token} />
-                } />
+                <Route path='posts'>
+                  <Route index element={
+                    <Posts token={token} />
+                  } />
+                  <Route path='new' element={
+                    <NewPost token={token} />
+                  } />
+                  <Route path=':postId' element={
+                    <Post token={token} />
+                  } />
+                </Route>
                 
-                <Route path=':commentId' element={
-                  <Comment token={token} />
-                } />
+                <Route path='users'>
+                  <Route index element={
+                    <Users token={token} />
+                  } />
+                  <Route path='new' element={
+                    <NewUser token={token} />
+                  } />
+                  <Route path=':userId' element={
+                    <User token={token} />
+                  } />
+                </Route>
+
+                <Route path='comments'>
+                  <Route index element={
+                    <Comments token={token} />
+                  } />
                   
-              </Route>
+                  <Route path=':commentId' element={
+                    <Comment token={token} />
+                  } />
+                    
+                </Route>
 
-              
-            </Routes>
+                
+              </Routes>
 
-          </main>
-        </>
-      )}
-    </div>
+            </main>
+          </>
+        )}
+      </div>
+    </UserContext.Provider>
   );
 }
 

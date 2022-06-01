@@ -47,8 +47,17 @@ button {
   color: white;
   transition: filter 200ms ease-in-out;
 }
+
 button:hover, .link-button:hover {
   filter: brightness(120%);
+}
+/* disabled button */
+button:disabled {
+  background-color: #959595;
+  border: 1px solid #959595;
+}
+button:disabled:hover {
+  filter: inherit;
 }
 /* fake button */
 .link-button {

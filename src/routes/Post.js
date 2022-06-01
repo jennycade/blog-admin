@@ -1,11 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useParams, Link } from 'react-router-dom';
+
+// context
+import UserContext from '../UserContext';
 
 // DB
 import {
   getPost,
   getPostComments,
   updatePost,
+  isUserPostAuthor,
+  isUserAdmin,
 } from '../databaseFunctions';
 
 // components
@@ -20,9 +25,13 @@ function Post({ token }) {
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [editing, setEditing] = useState(false);
+  const [userCanEdit, setUserCanEdit] = useState(false)
 
   // params
   const { postId } = useParams();
+
+  // context
+  const user = useContext(UserContext);
 
   // useEffect -> get post
   useEffect(() => {
@@ -41,6 +50,20 @@ function Post({ token }) {
       fetchPost(postId, token);
     }
   }, [postId, token]);
+
+  // useEffect -> get user permissions
+  useEffect(() => {
+    const fetchPermission = async (user, post) => {
+      // post authors and admin can edit or delete
+      const hasPermission = await isUserAdmin(user._id) ||
+      isUserPostAuthor(post, user._id);
+      setUserCanEdit(hasPermission);
+    }
+    if (Object.keys(post).length !== 0 && Object.keys(user).length !== 0) {
+      fetchPermission(user, post)
+    }
+
+  }, [post, user]);
 
   // functions
   const toggleEdit = () => {
@@ -84,7 +107,17 @@ function Post({ token }) {
         <>
           <h1>{post.title}</h1>
 
-          <button className="top-right" onClick={toggleEdit}>Edit</button>
+          {/* EDIT BUTTON */}
+          { userCanEdit && 
+            <button className="top-right" onClick={toggleEdit}>
+              Edit
+            </button>
+          }
+          { !userCanEdit &&
+            <button disabled={true} className="top-right">
+              Cannot edit
+            </button>
+          }
 
           <p>{'Posted by '}
             <Link to={`/users/${post.author._id}`}>{post.author.displayName}</Link>
