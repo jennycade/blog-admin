@@ -1,11 +1,14 @@
-import { getUsers } from '../databaseFunctions';
+import { getUsers, getUser } from '../databaseFunctions';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 // components
 import Loading from '../Loading';
 import Time from '../Time';
+
+// context
+import UserContext from '../UserContext';
 
 function Users(props) {
   // props
@@ -15,22 +18,39 @@ function Users(props) {
 
   // state
   const [users, setUsers] = useState([]);
+  const [userIsAdmin, setUserIsAdmin] = useState(false);
+
+  // user permissions
+  const currentUser = useContext(UserContext);
 
   // effect: get users on first render
   useEffect(() => {
-    if (token) {
+    if (token && Object.keys(currentUser) !== 0) {
+      
       const fetchUsers = async () => {
-        const newUsers = await getUsers(token);
-        setUsers(newUsers);
+        if (currentUser.roles.includes('admin')) {
+          setUserIsAdmin(true);
+          const newUsers = await getUsers(token);
+          setUsers(newUsers);
+        } else {
+          // user not admin—does not have permission
+          setUserIsAdmin(false);
+          // get own user data
+          const singleUser = await getUser(currentUser._id, token);
+          setUsers([singleUser]);
+        }
+        
       };
 
       fetchUsers();
     }
-  }, [token]);
+  }, [token, currentUser]);
 
   return (
     <>
       <h1>Users</h1>
+
+      <p>Only admin can see all users. You can view your own user details below.</p>
 
       { users.length === 0 ? <Loading /> :
 
