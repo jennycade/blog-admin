@@ -2,7 +2,7 @@
   "name": "blog-admin",
   "version": "0.1.0",
   "private": false,
-  "homepage": "https://jennycade.github.io//blog-admin",
+  "homepage": "https://jennycade.github.io/blog-admin",
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
